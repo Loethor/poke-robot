@@ -6,7 +6,9 @@ Library     Collections
 
 *** Keywords ***
 Get Pokemon By Name
-    [Documentation]    Fetches Pokemon data from PokeAPI by name and returns the full response object.
+    [Documentation]
+    ...    Fetches Pokemon data from PokeAPI by name
+    ...    and returns the full response object.
     [Arguments]    ${pokemon_name}
 
     ${response}=    GET On Session
@@ -16,7 +18,8 @@ Get Pokemon By Name
     RETURN    ${response}
 
 Pokemon Name Should Be
-    [Documentation]    Asserts Pokemon name in the response.
+    [Documentation]
+    ...    Asserts Pokemon name in the response.
     [Arguments]    ${response}    ${expected_name}
 
     VAR    ${pokemon_name}=    ${response.json()}[name]
@@ -26,17 +29,35 @@ Pokemon Name Should Be
     ...    ${expected_name}
 
 Pokemon Should Have Type
-    [Documentation]    Verifies that a Pokemon response contains the expected type by extracting all types from the response and checking if the expected type is present.
+    [Documentation]
+    ...    Verifies that a Pokemon response contains
+    ...    the expected type by extracting all types from the response
+    ...    and checking if the expected type is present.
     [Arguments]    ${response}    ${expected_type}
 
-    VAR    ${json}=    ${response.json()}
-    VAR    @{types}=    @{json}[types]
-    VAR    @{types_name}=    @{EMPTY}
+    VAR    &{json}=    &{response.json()}
 
-    FOR    ${type_name}    IN    @{types}[names]
-        Append To List    @{types_name}    ${type_name}
-    END
+    ${type_names}=    Evaluate
+    ...    [t["type"]["name"] for t in $json["types"]]
 
     Should Contain
-    ...    @{types_name}
+    ...    ${type_names}
     ...    ${expected_type}
+
+Pokemon Should Have One Type
+    [Documentation]
+    ...    Verifies that a Pokemon response contains
+    ...    one type only.
+    [Arguments]    ${response}
+    VAR    @{types}=    ${response.json()}[types]
+
+    Length Should Be    @{types}    1
+
+Pokemon Should Have Two Types
+    [Documentation]
+    ...    Verifies that a Pokemon response contains
+    ...    two types.
+    [Arguments]    ${response}
+    VAR    @{types}=    ${response.json()}[types]
+
+    Length Should Be    @{types}    2

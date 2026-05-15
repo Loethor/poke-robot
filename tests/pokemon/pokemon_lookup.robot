@@ -3,7 +3,6 @@ Documentation       Pokemon Lookup Test Suite
 ...                 Tests that verify Pokemon data can be successfully retrieved from the PokeAPI.
 ...                 Includes tests for validating Pokemon existence and correct data attributes.
 
-Resource            ../../resources/variables/api_variables.resource
 Resource            ../../resources/keywords/common.resource
 Resource            ../../resources/keywords/pokemon_keywords.resource
 
