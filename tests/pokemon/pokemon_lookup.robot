@@ -14,7 +14,7 @@ Test Teardown       Sleep    0.2
 Verify Pikachu Exists
     [Documentation]
     ...    Given the PokeAPI is available
-    ...    When we fetch Pikachu data
+    ...    When we request pokemon Pikachu
     ...    Then we receive a successful response and the correct Pokemon name
 
     ${response}=    Get Pokemon By Name    pikachu
@@ -25,10 +25,20 @@ Verify Pikachu Exists
 Verify Charmander Exists
     [Documentation]
     ...    Given the PokeAPI is available
-    ...    When we fetch Charmander data
+    ...    When we request pokemon Charmander
     ...    Then we receive a successful response and the correct Pokemon name
 
     ${response}=    Get Pokemon By Name    charmander
 
     Pokemon Name Should Be    ${response}    charmander
     Status Code Should Be    ${response}    200
+
+Verify Agumon Doesn't Exist
+    [Documentation]
+    ...    Given the PokeAPI is available
+    ...    When we request digimon Agumon
+    ...    Then we receive a bad request response
+
+    ${response}=    Get Pokemon By Name    agumon
+
+    Status Code Should Be    ${response}    404

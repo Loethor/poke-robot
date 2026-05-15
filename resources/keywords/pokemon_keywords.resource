@@ -14,6 +14,7 @@ Get Pokemon By Name
     ${response}=    GET On Session
     ...    pokeapi
     ...    ${POKEMON_API}/${pokemon_name}
+    ...    expected_status=any
 
     RETURN    ${response}
 
