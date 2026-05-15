@@ -25,8 +25,7 @@ Verify Charmander Is Fire Type
     ...    When we request pokemon Charmander
     ...    Then it should have Fire on its type.
     ${response}=    Get Pokemon By Name    charmander
-    ${type_result}=    Has Type    ${response}    fire
-    Should Be True    ${type_result}
+    Pokemon Should Have Type    ${response}    fire
 
 Verify Bulbasaur Has Two Types
     [Documentation]
@@ -43,11 +42,8 @@ Verify Bulbasaur Is Grass Poison Type
     ...    Then it should have Grass and Poison on its type.
     ${response}=    Get Pokemon By Name    bulbasaur
 
-    ${type_result}=    Has Type    ${response}    grass
-    Should Be True    ${type_result}
-
-    ${type_result}=    Has Type    ${response}    poison
-    Should Be True    ${type_result}
+    Pokemon Should Have Type    ${response}    grass
+    Pokemon Should Have Type    ${response}    poison
 
 Verify Squirtle Is Not a Normal Type
     [Documentation]
@@ -56,5 +52,4 @@ Verify Squirtle Is Not a Normal Type
     ...    Then it should not have Normal on its type.
     ${response}=    Get Pokemon By Name    Squirtle
 
-    ${type_result}=    Has Type    ${response}    normal
-    Should Not Be True    ${type_result}
+    Pokemon Should Not Have Type    ${response}    normal

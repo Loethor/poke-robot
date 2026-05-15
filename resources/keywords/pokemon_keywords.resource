@@ -2,6 +2,7 @@
 Resource    ../variables/api_variables.resource
 Resource    common.resource
 Library     Collections
+Library     ../../libraries/pokemon_library.py
 
 
 *** Keywords ***
@@ -51,14 +52,18 @@ Pokemon Should Have Type
     ...    and checking if the expected type is present.
     [Arguments]    ${response}    ${expected_type}
 
-    VAR    &{json}=    &{response.json()}
+    ${type_result}=    Has Type    ${response}    ${expected_type}
+    Should Be True    ${type_result}
 
-    ${type_names}=    Evaluate
-    ...    [t["type"]["name"] for t in $json["types"]]
+Pokemon Should Not Have Type
+    [Documentation]
+    ...    Verifies that a Pokemon response contains
+    ...    the expected type by extracting all types from the response
+    ...    and checking if the expected type is present.
+    [Arguments]    ${response}    ${expected_type}
 
-    Should Contain
-    ...    ${type_names}
-    ...    ${expected_type}
+    ${type_result}=    Has Type    ${response}    ${expected_type}
+    Should Not Be True    ${type_result}
 
 Pokemon Should Have One Type
     [Documentation]    Verifies that a Pokemon response contains exactly one type by checking the length of the types array.
