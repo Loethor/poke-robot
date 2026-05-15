@@ -8,6 +8,7 @@ Resource            ../../resources/keywords/common.resource
 Resource            ../../resources/keywords/pokemon_keywords.resource
 
 Suite Setup         Create PokeAPI Session
+Test Teardown       Sleep    0.2
 
 
 *** Test Cases ***
