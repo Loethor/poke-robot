@@ -20,7 +20,7 @@ Verify Pikachu Exists
     ${response}=    Get Pokemon By Name    pikachu
 
     Pokemon Name Should Be    ${response}    pikachu
-    Status Code Should Be    ${response}    200
+    Pokemon Should Exist    ${response}
 
 Verify Charmander Exists
     [Documentation]
@@ -31,9 +31,9 @@ Verify Charmander Exists
     ${response}=    Get Pokemon By Name    charmander
 
     Pokemon Name Should Be    ${response}    charmander
-    Status Code Should Be    ${response}    200
+    Pokemon Should Exist    ${response}
 
-Verify Agumon Doesn't Exist
+Verify Agumon Does Not Exist
     [Documentation]
     ...    Given the PokeAPI is available
     ...    When we request digimon Agumon
@@ -41,4 +41,4 @@ Verify Agumon Doesn't Exist
 
     ${response}=    Get Pokemon By Name    agumon
 
-    Status Code Should Be    ${response}    404
+    Pokemon Should Not Exist    ${response}

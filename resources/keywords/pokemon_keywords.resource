@@ -18,9 +18,24 @@ Get Pokemon By Name
 
     RETURN    ${response}
 
-Pokemon Name Should Be
+Pokemon Should Exist
     [Documentation]
-    ...    Asserts Pokemon name in the response.
+    ...    Verifies that a Pokemon exists in the PokeAPI by
+    ...    checking that the response status code is 200 (OK).
+    [Arguments]    ${response}
+
+    Should Be Equal As Integers    ${response.status_code}    200
+
+Pokemon Should Not Exist
+    [Documentation]
+    ...    Verifies that a Pokemon does not exist in the
+    ...    PokeAPI by checking that the response status code is 404 (Not Found).
+    [Arguments]    ${response}
+
+    Should Be Equal As Integers    ${response.status_code}    404
+
+Pokemon Name Should Be
+    [Documentation]    Verifies that a Pokemon response contains the expected name by extracting and comparing the name field from the JSON response.
     [Arguments]    ${response}    ${expected_name}
 
     VAR    ${pokemon_name}=    ${response.json()}[name]
@@ -46,18 +61,14 @@ Pokemon Should Have Type
     ...    ${expected_type}
 
 Pokemon Should Have One Type
-    [Documentation]
-    ...    Verifies that a Pokemon response contains
-    ...    one type only.
+    [Documentation]    Verifies that a Pokemon response contains exactly one type by checking the length of the types array.
     [Arguments]    ${response}
     VAR    @{types}=    ${response.json()}[types]
 
     Length Should Be    @{types}    1
 
 Pokemon Should Have Two Types
-    [Documentation]
-    ...    Verifies that a Pokemon response contains
-    ...    two types.
+    [Documentation]    Verifies that a Pokemon response contains exactly two types by checking the length of the types array.
     [Arguments]    ${response}
     VAR    @{types}=    ${response.json()}[types]
 
