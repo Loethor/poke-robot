@@ -1,8 +1,10 @@
 *** Settings ***
-Resource    ../variables/api_variables.resource
-Resource    common.resource
-Library     Collections
-Library     ../../libraries/pokemon_library.py
+Documentation       Keywords used in Pokemon-related tests
+
+Resource            ../variables/api_variables.resource
+Resource            common.resource
+Library             Collections
+Library             ../../libraries/pokemon_library.py
 
 
 *** Keywords ***
@@ -36,7 +38,9 @@ Pokemon Should Not Exist
     Should Be Equal As Integers    ${response.status_code}    404
 
 Pokemon Name Should Be
-    [Documentation]    Verifies that a Pokemon response contains the expected name by extracting and comparing the name field from the JSON response.
+    [Documentation]
+    ...    Verifies that a Pokemon response contains the expected
+    ...    name by extracting and comparing the name field from the JSON response.
     [Arguments]    ${response}    ${expected_name}
 
     VAR    ${pokemon_name}=    ${response.json()}[name]
@@ -66,7 +70,9 @@ Pokemon Should Not Have Type
     Should Not Be True    ${type_result}
 
 Pokemon Should Have One Type
-    [Documentation]    Verifies that a Pokemon response contains exactly one type by checking the length of the types array.
+    [Documentation]
+    ...    Verifies that a Pokemon response contains exactly
+    ...    one type by checking the length of the types array.
     [Arguments]    ${response}
     VAR    @{types}=    ${response.json()}[types]
 
