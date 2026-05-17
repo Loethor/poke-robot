@@ -12,16 +12,29 @@ This project is used to practice and demonstrate:
 - Test automation principles
 - Negative and positive test scenarios
 - Test organization and reusable keywords
-- 
+
+## Installation
+
+1. Clone the repository
+2. Install [uv](https://github.com/astral-sh/uv#installation)
+3. `cd poke-robot`
+4. `uv sync`
+
+## Run the tests
+
+`uv run robot tests/`
+  
 ## Technologies
 
-- Python
-- Robot Framework
-- RequestsLibrary
+- [Python](https://www.python.org/)
+- [Robot Framework](https://robotframework.org/)
+- [RequestsLibrary](https://pypi.org/project/requests/)
+- [uv](https://docs.astral.sh/uv/)
+
 
 ## API Used
 
-This project uses data from [PokéAPI](https://pokeapi.co/)
+This project uses data from [PokéAPI](https://pokeapi.co/).
 
 PokéAPI is a free and community-driven Pokémon REST API.
 

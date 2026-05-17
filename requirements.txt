@@ -1,6 +1,0 @@
-robotframework
-robotframework-csvlibrary
-robotframework-jsonlibrary
-robotframework-requests
-robotframework-robocop
-requests
