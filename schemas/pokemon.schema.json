@@ -1,0 +1,127 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": true,
+    "required": [
+        "id",
+        "name",
+        "height",
+        "weight",
+        "abilities",
+        "types",
+        "stats"
+    ],
+    "$defs": {
+        "named_api_resource": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+                "name",
+                "url"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri"
+                }
+            }
+        }
+    },
+    "properties": {
+        "id": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "name": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+        },
+        "height": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "weight": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "base_experience": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0
+        },
+        "abilities": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "required": [
+                    "ability",
+                    "is_hidden",
+                    "slot"
+                ],
+                "properties": {
+                    "ability": {
+                        "$ref": "#/$defs/named_api_resource"
+                    },
+                    "is_hidden": {
+                        "type": "boolean"
+                    },
+                    "slot": {
+                        "type": "integer",
+                        "minimum": 1
+                    }
+                }
+            }
+        },
+        "types": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "required": [
+                    "slot",
+                    "type"
+                ],
+                "properties": {
+                    "slot": {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    "type": {
+                        "$ref": "#/$defs/named_api_resource"
+                    }
+                }
+            }
+        },
+        "stats": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "required": [
+                    "base_stat",
+                    "effort",
+                    "stat"
+                ],
+                "properties": {
+                    "base_stat": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "effort": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "stat": {
+                        "$ref": "#/$defs/named_api_resource"
+                    }
+                }
+            }
+        }
+    }
+}

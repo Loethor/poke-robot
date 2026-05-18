@@ -5,7 +5,6 @@ Documentation       Pokemon Lookup Test Suite
 
 Resource            ../../resources/keywords/common.resource
 Resource            ../../resources/keywords/pokemon_keywords.resource
-Library             ../../libraries/pokemon_library.py
 Library             CSVLibrary
 
 Suite Setup         Create PokeAPI Session

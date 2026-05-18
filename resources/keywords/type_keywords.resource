@@ -3,6 +3,7 @@ Documentation       Keywords used in type-related tests
 
 Resource            ../variables/api_variables.resource
 Resource            common.resource
+Library             JSONSchemaLibrary
 Library             ../../libraries/type_library.py
 
 
@@ -91,3 +92,26 @@ Type Should Not Have Types With Immunity
     ...    by checking that the "no_damage_to" field is empty.
     [Arguments]    ${response}
     Has No Unaffected Types    ${response}
+
+Get Type Json
+    [Documentation]
+    ...    Extracts and returns the JSON data from a Type API response.
+    ...    This is useful for schema validation and direct data inspection.
+    [Arguments]    ${name}
+
+    ${response}=    Get Type By Name    ${name}
+
+    RETURN    ${response.json()}
+
+Type Response Should Match Schema
+    [Documentation]
+    ...    Validates that a Type's API response matches the expected
+    ...    JSON schema, ensuring all required fields and types are correct.
+    ...    Fetches the Type data and validates against the provided schema.
+    [Arguments]    ${type_name}    ${schema}
+
+    ${json}=    Get Type Json    ${type_name}
+
+    Validate Json
+    ...    ${schema}
+    ...    ${json}

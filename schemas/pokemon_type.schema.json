@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": true,
+    "required": [
+        "damage_relations",
+        "moves",
+        "name",
+        "pokemon"
+    ],
+    "properties": {
+        "damage_relations": {
+            "type": "object",
+            "minimum": 6
+        },
+        "name": {
+            "type": "string"
+        }
+    }
+}

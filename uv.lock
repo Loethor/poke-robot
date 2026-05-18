@@ -335,6 +335,7 @@ dependencies = [
     { name = "robotframework" },
     { name = "robotframework-csvlibrary" },
     { name = "robotframework-jsonlibrary" },
+    { name = "robotframework-jsonschemalibrary" },
     { name = "robotframework-requests" },
     { name = "robotframework-robocop" },
 ]
@@ -345,6 +346,7 @@ requires-dist = [
     { name = "robotframework", specifier = ">=7.4.2" },
     { name = "robotframework-csvlibrary", specifier = ">=0.0.5" },
     { name = "robotframework-jsonlibrary", specifier = ">=0.5" },
+    { name = "robotframework-jsonschemalibrary", specifier = ">=1.0" },
     { name = "robotframework-requests", specifier = ">=0.9.7" },
     { name = "robotframework-robocop", specifier = ">=8.2.8" },
 ]
@@ -440,6 +442,16 @@ dependencies = [
     { name = "robotframework" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/09/e0/0031756305cda8671745387b3394fbe56fedd833947d46245efbe46b6d45/robotframework-jsonlibrary-0.5.tar.gz", hash = "sha256:000ac2e53c7f96e3b749c6b5595fcec87d5291b4afc03fb252470356a7d5da1f", size = 5538, upload-time = "2022-08-08T08:54:38.018Z" }
+
+[[package]]
+name = "robotframework-jsonschemalibrary"
+version = "1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "jsonschema" },
+    { name = "robotframework" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e6/0d/5d4162af1b87260f633cbd402cbe4bd263efa057bb9799c97e8e5676b241/robotframework-jsonschemalibrary-1.0.tar.gz", hash = "sha256:e52a00c8d8155b9c99d130da8360a7a692b19d292af1c58f0bf433df81df833b", size = 2429, upload-time = "2016-10-28T15:52:11.8Z" }
 
 [[package]]
 name = "robotframework-requests"

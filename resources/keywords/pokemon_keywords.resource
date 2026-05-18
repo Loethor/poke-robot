@@ -4,6 +4,7 @@ Documentation       Keywords used in Pokemon-related tests
 Resource            ../variables/api_variables.resource
 Resource            common.resource
 Library             Collections
+Library             JSONSchemaLibrary
 Library             ../../libraries/pokemon_library.py
 
 
@@ -61,9 +62,9 @@ Pokemon Should Have Type
 
 Pokemon Should Not Have Type
     [Documentation]
-    ...    Verifies that a Pokemon response contains
-    ...    the expected type by extracting all types from the response
-    ...    and checking if the expected type is present.
+    ...    Verifies that a Pokemon response does NOT contain
+    ...    the specified type by extracting all types from the response
+    ...    and confirming the type is absent.
     [Arguments]    ${response}    ${expected_type}
 
     ${type_result}=    Has Type    ${response}    ${expected_type}
@@ -79,8 +80,33 @@ Pokemon Should Have One Type
     Length Should Be    @{types}    1
 
 Pokemon Should Have Two Types
-    [Documentation]    Verifies that a Pokemon response contains exactly two types by checking the length of the types array.
+    [Documentation]
+    ...    Verifies that a Pokemon response contains exactly
+    ...    two types by checking the length of the types array.
     [Arguments]    ${response}
     VAR    @{types}=    ${response.json()}[types]
 
     Length Should Be    @{types}    2
+
+Get Pokemon Json
+    [Documentation]
+    ...    Extracts and returns the JSON data from a Pokemon API response.
+    ...    This is useful for schema validation and direct data inspection.
+    [Arguments]    ${name}
+
+    ${response}=    Get Pokemon By Name    ${name}
+
+    RETURN    ${response.json()}
+
+Pokemon Response Should Match Schema
+    [Documentation]
+    ...    Validates that a Pokemon's API response matches the expected
+    ...    JSON schema, ensuring all required fields and types are correct.
+    ...    Fetches the Pokemon data and validates against the provided schema.
+    [Arguments]    ${pokemon_name}    ${schema}
+
+    ${json}=    Get Pokemon Json    ${pokemon_name}
+
+    Validate Json
+    ...    ${schema}
+    ...    ${json}
