@@ -1,0 +1,53 @@
+name: Robot Framework Tests (uv)
+
+on:
+  push:
+    paths:
+      - "tests/**"
+      - "libraries/**"
+      - "resources/**"
+      - "pyproject.toml"
+      - "uv.lock"
+  pull_request:
+    paths:
+      - "tests/**"
+      - "libraries/**"
+      - "resources/**"
+      - "pyproject.toml"
+      - "uv.lock"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Cache uv
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/uv
+          key: ${{ runner.os }}-uv-${{ hashFiles('uv.lock') }}
+
+      - name: Install dependencies (uv sync)
+        run: uv sync
+
+      - name: Run tests
+        run: uv run robot -d results tests/
+
+      - name: Upload Robot reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-reports
+          path: results/
