@@ -80,6 +80,7 @@ jobs:
         run: |
             python - << 'EOF'
             import re
+            import os
 
             # read Robot output
             with open("results/output.xml", "r", encoding="utf-8") as f:
