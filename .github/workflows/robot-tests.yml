@@ -73,3 +73,36 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+
+
+      - name: Generate GitHub Summary
+        if: always()
+        run: |
+            python - << 'EOF'
+            import re
+
+            # read Robot output
+            with open("results/output.xml", "r", encoding="utf-8") as f:
+                xml = f.read()
+
+            tests = len(re.findall(r'<test', xml))
+            fails = len(re.findall(r'status="FAIL"', xml))
+            passes = len(re.findall(r'status="PASS"', xml))
+
+            summary = f"""
+            ## 🧪 Robot Framework Results
+
+            ✅ Passed: {passes}  
+            ❌ Failed: {fails}  
+            📊 Total: {tests}  
+
+            """
+
+            if fails == 0:
+                summary += "Test suite stable\n"
+            else:
+                summary += "⚠️ Failures detected\n"
+
+            with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
+                f.write(summary)
+            EOF
