@@ -109,9 +109,6 @@ jobs:
           # Main report (Allure)
           cp -r allure-report/. public/
 
-          # Optional portal page
-          cp .github/pages/index.html public/index.html
-
       # -------------------
       # Deploy to GitHub Pages
       # -------------------
