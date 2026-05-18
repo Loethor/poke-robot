@@ -6,7 +6,7 @@ on:
       - "tests/**"
       - "libraries/**"
       - "resources/**"
-      - "**/robot-tests.yml"
+      - ""
       - "pyproject.toml"
       - "uv.lock"
 
@@ -15,7 +15,6 @@ on:
       - "tests/**"
       - "libraries/**"
       - "resources/**"
-      - "**/robot-tests.yml"
       - "pyproject.toml"
       - "uv.lock"
 
@@ -61,8 +60,8 @@ jobs:
       - name: Prepare Pages
         if: always()
         run: |
-            mkdir -p public
-            cp -r results/* public/
+          mkdir public
+          cp pages/index.html public/index.html
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
