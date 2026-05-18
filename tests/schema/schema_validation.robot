@@ -1,5 +1,14 @@
 *** Settings ***
 Documentation       Validates Pokemon API response schemas
+...
+...                 This test suite ensures that API responses from PokeAPI
+...                 conform to the expected JSON schemas, helping catch
+...                 breaking changes or data structure inconsistencies.
+...
+...                 Schemas validate:
+...                 - Required fields are present
+...                 - Field data types are correct
+...                 - Nested structures are properly formed
 
 Resource            ../../resources/keywords/common.resource
 Resource            ../../resources/keywords/pokemon_keywords.resource
@@ -16,11 +25,21 @@ ${POKEMON_TYPE_SCHEMA}      pokemon_type.schema.json
 
 *** Test Cases ***
 Validate Pikachu Schema
+    [Documentation]
+    ...    Given the PokeAPI is available
+    ...    When we request Pikachu data
+    ...    Then the response structure should match the Pokemon schema
+
     Pokemon Response Should Match Schema
     ...    pikachu
     ...    ${POKEMON_SCHEMA}
 
 Validate Multiple Pokemon Schemas
+    [Documentation]
+    ...    Given the PokeAPI is available
+    ...    When we request data for multiple Pokemon
+    ...    Then all responses should match the Pokemon schema
+
     FOR    ${pokemon}    IN
     ...    pikachu
     ...    charizard
@@ -32,4 +51,9 @@ Validate Multiple Pokemon Schemas
     END
 
 Validate Pokemon Types Schema
+    [Documentation]
+    ...    Given the PokeAPI is available
+    ...    When we request Type data (e.g., Fire)
+    ...    Then the response structure should match the Type schema
+
     Type Response Should Match Schema    fire    ${POKEMON_TYPE_SCHEMA}
