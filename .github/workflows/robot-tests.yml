@@ -6,7 +6,6 @@ on:
       - "tests/**"
       - "libraries/**"
       - "resources/**"
-      - "**/robot-tests.yml"
       - "pyproject.toml"
       - "uv.lock"
 
@@ -15,7 +14,6 @@ on:
       - "tests/**"
       - "libraries/**"
       - "resources/**"
-      - "**/robot-tests.yml"
       - "pyproject.toml"
       - "uv.lock"
 
