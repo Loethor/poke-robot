@@ -2,12 +2,51 @@
 <html>
 
 <head>
-    <meta http-equiv="refresh" content="0; url=report.html">
-    <title>Robot Framework Report</title>
+    <title>QA Test Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        .card {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            max-width: 500px;
+        }
+
+        a {
+            display: block;
+            margin-top: 10px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #0366d6;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
-    <p>Redirecting to Robot Framework report...</p>
+
+    <h1>🧪 QA Automation Dashboard</h1>
+
+    <div class="card">
+        <h2>📊 Reports</h2>
+
+        <a href="index.html">➡ Allure Report</a>
+
+    </div>
+
+    <div class="card">
+        <h2>ℹ Info</h2>
+        <p>Latest automated test execution results from Robot Framework + Allure.</p>
+    </div>
+
 </body>
 
 </html>
