@@ -3,31 +3,6 @@ revision = 3
 requires-python = ">=3.12"
 
 [[package]]
-name = "allure-python-commons"
-version = "2.16.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "attrs" },
-    { name = "pluggy" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/d6/ad/9cd9020d194bb0fff783538096cb5cfae9d714d1f63a7c542c0e92fd822f/allure_python_commons-2.16.0.tar.gz", hash = "sha256:ecdc92bafea074bab96b5f2c4eb3100825340188f5aece608ae80eced709b36f", size = 15681, upload-time = "2026-04-27T08:34:31.138Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/53/78/ddd0affa881b1e09bc59f11ab829a7904f4bca29d25c34cbb9395e8e0061/allure_python_commons-2.16.0-py3-none-any.whl", hash = "sha256:6d42a500078aca8a2e68823075c1ffc2396987bb268d62b19af82390b205ce88", size = 16871, upload-time = "2026-04-27T08:34:29.828Z" },
-]
-
-[[package]]
-name = "allure-robotframework"
-version = "2.16.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "allure-python-commons" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/16/19/d669d68cf701d84e2ad4f3b6879985e9afe366d280e380dce1d3c50195c1/allure_robotframework-2.16.0.tar.gz", hash = "sha256:7640f4ec4b1f84e34d6a297f8830fa9b46582abcbceb7691cdf221107e009760", size = 13250, upload-time = "2026-04-27T08:34:46.589Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e3/4e/24b73c49db27e0a4037dc351e20e506c2deb06002db10b6001c8805dcd35/allure_robotframework-2.16.0-py3-none-any.whl", hash = "sha256:bd27f18b1872509b0df51c1fb300a13858927851ff94c2325669c8be8ba48941", size = 9483, upload-time = "2026-04-27T08:34:45.478Z" },
-]
-
-[[package]]
 name = "annotated-doc"
 version = "0.0.4"
 source = { registry = "https://pypi.org/simple" }
@@ -352,20 +327,10 @@ wheels = [
 ]
 
 [[package]]
-name = "pluggy"
-version = "1.6.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/f9/e2/3e91f31a7d2b083fe6ef3fa267035b518369d9511ffab804f839851d2779/pluggy-1.6.0.tar.gz", hash = "sha256:7dcc130b76258d33b90f61b658791dede3486c3e6bfb003ee5c9bfb396dd22f3", size = 69412, upload-time = "2025-05-15T12:30:07.975Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/54/20/4d324d65cc6d9205fabedc306948156824eb9f0ee1633355a8f7ec5c66bf/pluggy-1.6.0-py3-none-any.whl", hash = "sha256:e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746", size = 20538, upload-time = "2025-05-15T12:30:06.134Z" },
-]
-
-[[package]]
 name = "poke-robot"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "allure-robotframework" },
     { name = "requests" },
     { name = "robotframework" },
     { name = "robotframework-csvlibrary" },
@@ -377,7 +342,6 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "allure-robotframework", specifier = ">=2.16.0" },
     { name = "requests", specifier = ">=2.34.2" },
     { name = "robotframework", specifier = ">=7.4.2" },
     { name = "robotframework-csvlibrary", specifier = ">=0.0.5" },

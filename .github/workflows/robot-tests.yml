@@ -6,6 +6,7 @@ on:
       - "tests/**"
       - "libraries/**"
       - "resources/**"
+      - "**/robot-tests.yml"
       - "pyproject.toml"
       - "uv.lock"
 
@@ -14,6 +15,7 @@ on:
       - "tests/**"
       - "libraries/**"
       - "resources/**"
+      - "**/robot-tests.yml"
       - "pyproject.toml"
       - "uv.lock"
 
@@ -29,68 +31,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # -------------------
-      # Checkout
-      # -------------------
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # -------------------
-      # Install uv
-      # -------------------
       - name: Install uv
         run: |
           curl -LsSf https://astral.sh/uv/install.sh | sh
           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
-      # -------------------
-      # Cache uv
-      # -------------------
       - name: Cache uv
         uses: actions/cache@v4
         with:
           path: ~/.cache/uv
           key: ${{ runner.os }}-uv-${{ hashFiles('uv.lock') }}
 
-      # -------------------
-      # Install dependencies
-      # -------------------
       - name: Install dependencies (uv sync)
         run: uv sync
 
-      # -------------------
-      # Run Robot tests with Allure listener
-      # -------------------
       - name: Run tests
-        run: uv run robot --listener allure_robotframework -d results tests/
+        run: uv run robot -d results tests/
 
-      # -------------------
-      # Set up Java (required for Allure CLI)
-      # -------------------
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: "21"
-
-      # -------------------
-      # Install Allure CLI
-      # -------------------
-      - name: Install Allure CLI
-        run: |
-          curl -o allure.zip -L https://github.com/allure-framework/allure2/releases/latest/download/allure-2.41.0.zip
-          unzip allure.zip -d $HOME/allure
-          echo "$HOME/allure/allure-2.41.0/bin" >> $GITHUB_PATH
-
-      # -------------------
-      # Generate Allure report
-      # -------------------
-      - name: Generate Allure report
-        run: allure generate results -o allure-report --clean
-
-      # -------------------
-      # Upload raw Robot output (debugging)
-      # -------------------
       - name: Upload Robot reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -98,23 +58,15 @@ jobs:
           name: robot-reports
           path: results/
 
-      # -------------------
-      # Prepare GitHub Pages
-      # -------------------
       - name: Prepare Pages
         if: always()
         run: |
-          mkdir -p public
+          mkdir public
+          cp -r results/. public/
 
-          # Main report (Allure)
-          cp -r allure-report/. public/
-
-          # Optional portal page
           cp .github/pages/index.html public/index.html
 
-      # -------------------
-      # Deploy to GitHub Pages
-      # -------------------
+
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
