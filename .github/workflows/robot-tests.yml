@@ -62,7 +62,7 @@ jobs:
         if: always()
         run: |
             mkdir -p public
-            cp -r results/. public/
+            cp -r results/* public/
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
