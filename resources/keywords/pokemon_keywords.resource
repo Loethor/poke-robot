@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation       Keywords used in Pokemon-related tests
 
-Resource            ../variables/api_variables.resource
 Resource            common.resource
 Library             Collections
 Library             JSONSchemaLibrary

@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation       Keywords used in type-related tests
 
-Resource            ../variables/api_variables.resource
 Resource            common.resource
 Library             JSONSchemaLibrary
 Library             ../../libraries/type_library.py
