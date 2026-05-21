@@ -5,6 +5,7 @@ Documentation       Pokemon Lookup Test Suite
 
 Resource            ../../resources/keywords/common.resource
 Resource            ../../resources/keywords/pokemon_keywords.resource
+Library             String
 Library             CSVLibrary
 
 Suite Setup         Create PokeAPI Session
@@ -69,3 +70,15 @@ Verify All Pokemon From Csv
             Pokemon Should Have Type    ${response}    ${type2}
         END
     END
+
+Verify Random Pokemon Not Found
+    [Documentation]
+    ...    Given the PokeAPI is available
+    ...    When we request random name
+    ...    Then the request is not found
+
+    ${random}=    Generate Random String    6
+
+    ${response}=    Get Pokemon By Name    ${random}
+
+    Pokemon Should Not Exist    ${response}
