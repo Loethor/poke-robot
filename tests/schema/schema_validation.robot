@@ -29,6 +29,7 @@ Validate Pikachu Schema
     ...    Given the PokeAPI is available
     ...    When we request Pikachu data
     ...    Then the response structure should match the Pokemon schema
+    [Tags]    schema    pokemon    smoke
 
     Pokemon Response Should Match Schema
     ...    pikachu
@@ -39,6 +40,7 @@ Validate Multiple Pokemon Schemas
     ...    Given the PokeAPI is available
     ...    When we request data for multiple Pokemon
     ...    Then all responses should match the Pokemon schema
+    [Tags]    schema    pokemon    regression
 
     FOR    ${pokemon}    IN
     ...    pikachu
@@ -55,5 +57,6 @@ Validate Pokemon Types Schema
     ...    Given the PokeAPI is available
     ...    When we request Type data (e.g., Fire)
     ...    Then the response structure should match the Type schema
+    [Tags]    schema    type    smoke
 
     Type Response Should Match Schema    fire    ${POKEMON_TYPE_SCHEMA}

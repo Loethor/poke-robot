@@ -22,6 +22,7 @@ Verify Pikachu Exists
     ...    Given the PokeAPI is available
     ...    When we request pokemon Pikachu
     ...    Then the pokemon exists and the name is correct
+    [Tags]    pokemon    smoke
 
     ${response}=    Get Pokemon By Name    pikachu
 
@@ -33,6 +34,7 @@ Verify Charmander Exists
     ...    Given the PokeAPI is available
     ...    When we request pokemon Charmander
     ...    Then the pokemon exists and the name is correct
+    [Tags]    pokemon    smoke
 
     ${response}=    Get Pokemon By Name    charmander
 
@@ -44,6 +46,7 @@ Verify Agumon Does Not Exist
     ...    Given the PokeAPI is available
     ...    When we request digimon Agumon
     ...    Then the digimon does not exist
+    [Tags]    pokemon    negative
 
     ${response}=    Get Pokemon By Name    agumon
 
@@ -54,6 +57,8 @@ Verify All Pokemon From Csv
     ...    Given the PokeAPI is available
     ...    When we request pokemons from the csv
     ...    Then all of them exist
+    [Tags]    pokemon    data-driven    regression
+
     @{rows}=    Read Csv File To Associative    ${CSV_FILE}
 
     FOR    ${row}    IN    @{rows}
@@ -76,6 +81,7 @@ Verify Random Pokemon Not Found
     ...    Given the PokeAPI is available
     ...    When we request random name
     ...    Then the request is not found
+    [Tags]    pokemon    negative
 
     ${random}=    Generate Random String    6
 

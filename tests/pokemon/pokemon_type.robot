@@ -15,6 +15,8 @@ Verify Charmander Has One Type
     ...    Given the PokeAPI is available
     ...    When we request pokemon Charmander
     ...    Then it should be a single-type pokemon
+    [Tags]    pokemon    type    smoke
+
     ${response}=    Get Pokemon By Name    charmander
     Pokemon Should Have One Type    ${response}
 
@@ -23,6 +25,8 @@ Verify Charmander Is Fire Type
     ...    Given the PokeAPI is available
     ...    When we request pokemon Charmander
     ...    Then it should have Fire on its type.
+    [Tags]    pokemon    type    smoke
+
     ${response}=    Get Pokemon By Name    charmander
     Pokemon Should Have Type    ${response}    fire
 
@@ -31,6 +35,8 @@ Verify Bulbasaur Has Two Types
     ...    Given the PokeAPI is available
     ...    When we request pokemon Bulbasaur
     ...    Then it should be a dual-type pokemon
+    [Tags]    pokemon    type    regression
+
     ${response}=    Get Pokemon By Name    bulbasaur
     Pokemon Should Have Two Types    ${response}
 
@@ -39,6 +45,8 @@ Verify Bulbasaur Is Grass Poison Type
     ...    Given the PokeAPI is available
     ...    When we request pokemon Bulbasaur
     ...    Then it should have Grass and Poison on its type.
+    [Tags]    pokemon    type    regression
+
     ${response}=    Get Pokemon By Name    bulbasaur
 
     Pokemon Should Have Type    ${response}    grass
@@ -49,6 +57,8 @@ Verify Squirtle Is Not a Normal Type
     ...    Given the PokeAPI is available
     ...    When we request pokemon Squirtle
     ...    Then it should not have Normal on its type.
+    [Tags]    pokemon    type    negative
+
     ${response}=    Get Pokemon By Name    Squirtle
 
     Pokemon Should Not Have Type    ${response}    normal

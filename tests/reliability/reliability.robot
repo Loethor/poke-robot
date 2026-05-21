@@ -15,6 +15,7 @@ Verify Pokemon Response Is Consistent Across Calls
     ...    Given the PokéAPI is available
     ...    When the same Pokémon is requested multiple times
     ...    Then the responses should be identical and consistent
+    [Tags]    reliability    stability    smoke
 
     ${r1}=    Get Pokemon By Name    pikachu
     ${r2}=    Get Pokemon By Name    pikachu
@@ -29,6 +30,7 @@ Verify Pokemon Endpoint Survives Burst Requests
     ...    Given the PokéAPI is available
     ...    When multiple rapid requests are sent to the same endpoint
     ...    Then the API should remain stable and return valid responses
+    [Tags]    reliability    load
 
     FOR    ${i}    IN RANGE    20
         ${response}=    Get Pokemon By Name    charizard
@@ -40,6 +42,7 @@ Verify Invalid Requests Do Not Break API
     ...    Given the PokéAPI is available
     ...    When an invalid Pokémon is requested
     ...    Then the API should handle the error safely and remain functional afterwards
+    [Tags]    reliability    negative    stability
 
     Get Pokemon By Name    MissigNO
     Get Pokemon By Name    pikachu
@@ -52,6 +55,7 @@ Verify Pokemon API Response Time Is Acceptable
     ...    Given the PokéAPI is available
     ...    When a single Pokémon is requested
     ...    Then the response time should be within acceptable performance thresholds
+    [Tags]    performance    latency    smoke
 
     ${start}=    Get Time    epoch
     ${response}=    Get Pokemon By Name    pikachu
@@ -67,6 +71,7 @@ Verify Pokemon API Response Multiple Calls
     ...    Given the PokéAPI is available
     ...    When multiple Pokémon requests are executed repeatedly
     ...    Then the average response time should remain within acceptable limits
+    [Tags]    performance    latency    regression
 
     VAR    ${total}=    0
 
