@@ -1,17 +1,31 @@
 # poke-robot
 
-A learning project focused on API test automation using Robot Framework.
+API test automation project built with Robot Framework and Python using PokéAPI.
 
-## Goals
+[![Robot Framework Tests](https://github.com/Loethor/poke-robot/actions/workflows/robot-tests.yml/badge.svg)](https://github.com/Loethor/poke-robot/actions/workflows/robot-tests.yml)
 
-This project is used to practice and demonstrate:
+[🤖Latest report](https://loethor.github.io/poke-robot/report.html)
 
-- Robot Framework
-- REST API testing
-- HTTP requests and responses
-- Test automation principles
-- Negative and positive test scenarios
-- Test organization and reusable keywords
+## Overview
+
+This project explores API test automation using Robot Framework and PokéAPI.
+
+It focuses on:
+- reusable Robot Framework keywords
+- REST API testing patterns
+- positive and negative test scenarios
+- data-driven testing with CSV
+- GitHub Actions CI integration
+- automated report publishing
+
+## Run tests (quick start)
+
+`uv sync`
+`uv run robot tests/`
+
+Optional:
+`uv run robot -d reports tests `
+`uv run robot -d reports tests/pokemon`
 
 ## Installation
 
@@ -20,10 +34,43 @@ This project is used to practice and demonstrate:
 3. `cd poke-robot`
 4. `uv sync`
 
-## Run the tests
 
-`uv run robot tests/`
-  
+## Project structure
+
+poke-robot/
+├── data/
+├── libraries/
+├── resources/
+├── schemas/
+├── tests/
+└── .github/workflows/
+
+## Examples
+
+```robot
+
+Verify Pikachu Exists
+    [Documentation]
+    ...    Given the PokeAPI is available
+    ...    When we request pokemon Pikachu
+    ...    Then the pokemon exists and the name is correct
+
+    ${response}=    Get Pokemon By Name    pikachu
+
+    Pokemon Name Should Be    ${response}    pikachu
+    Pokemon Should Exist    ${response}
+```
+
+
+
+## Architecture
+
+- Robot Framework handles test orchestration
+- RequestsLibrary performs API communication
+- Python helper libraries provide reusable validation logic
+- CSV datasets enable data-driven testing
+- GitHub Actions runs automated CI pipelines
+
 ## Technologies
 
 - [Python](https://www.python.org/)
