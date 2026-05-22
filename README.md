@@ -24,6 +24,7 @@ It focuses on:
 `uv run robot tests/`
 
 Optional:
+
 `uv run robot -d reports tests `
 `uv run robot -d reports tests/pokemon`
 
@@ -37,13 +38,15 @@ Optional:
 
 ## Project structure
 
+```
 poke-robot/
 ├── data/
 ├── libraries/
 ├── resources/
 ├── schemas/
 ├── tests/
-└── .github/workflows/
+└── .github/workflows
+```
 
 ## Examples
 
