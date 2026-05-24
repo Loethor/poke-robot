@@ -35,3 +35,19 @@ Verify Charizard Cross-Endpoints
         ${ability_response}=    Get Ability By Name    ${ability}
         Ability Should Exist    ${ability_response}
     END
+
+Verify Pokemon Type Bideractionality
+    [Documentation]
+    ...    Given the PokeAPI is available
+    ...    When we request a Pokémon and its types
+    ...    Then that Pokémon should appear in each type's Pokémon list
+    ...    This validates the bidirectional relationship between Pokémon and Type endpoints
+    [Tags]    cross-endpoint    pokemon    type    regression    relationship
+
+    ${response}=    Get Pokemon By Name    snorlax
+    @{types}=    Get Types    ${response}
+    FOR    ${type_name}    IN    @{types}
+        ${type_response}=    Get Type By Name    ${type_name}
+        ${pokemon_in_type}=    Type Has Pokemon    ${type_response}    snorlax
+        Should Be True    ${pokemon_in_type}
+    END
