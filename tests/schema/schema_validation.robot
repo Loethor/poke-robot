@@ -13,14 +13,16 @@ Documentation       Validates Pokemon API response schemas
 Resource            ../../resources/keywords/common.resource
 Resource            ../../resources/keywords/pokemon_keywords.resource
 Resource            ../../resources/keywords/type_keywords.resource
+Resource            ../../resources/keywords/ability_keywords.resource
 
 Suite Setup         Create PokeAPI Session
 Test Teardown       Sleep    0.2
 
 
 *** Variables ***
-${POKEMON_SCHEMA}           pokemon.schema.json
-${POKEMON_TYPE_SCHEMA}      pokemon_type.schema.json
+${POKEMON_SCHEMA}               pokemon.schema.json
+${POKEMON_TYPE_SCHEMA}          pokemon_type.schema.json
+${POKEMON_ABILITY_SCHEMA}       pokemon_ability.schema.json
 
 
 *** Test Cases ***
@@ -60,3 +62,12 @@ Validate Pokemon Types Schema
     [Tags]    schema    type    smoke
 
     Type Response Should Match Schema    fire    ${POKEMON_TYPE_SCHEMA}
+
+Validate Pokemon Ability Schema
+    [Documentation]
+    ...    Given the PokeAPI is available
+    ...    When we request Ability data (e.g., Blaze)
+    ...    Then the response structure should match the Abilty schema
+    [Tags]    schema    ability    smoke
+
+    Ability Response Should Match Schema    blaze    ${POKEMON_ABILITY_SCHEMA}

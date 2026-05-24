@@ -2,6 +2,7 @@
 Documentation       Keywords used in ability-related tests
 
 Resource            common.resource
+Library             JSONSchemaLibrary
 
 
 *** Keywords ***
@@ -33,3 +34,26 @@ Ability Should Not Exist
     [Arguments]    ${response}
 
     Should Be Equal As Integers    ${response.status_code}    404
+
+Get Ability Json
+    [Documentation]
+    ...    Extracts and returns the JSON data from a Ability API response.
+    ...    This is useful for schema validation and direct data inspection.
+    [Arguments]    ${name}
+
+    ${response}=    Get Ability By Name    ${name}
+
+    RETURN    ${response.json()}
+
+Ability Response Should Match Schema
+    [Documentation]
+    ...    Validates that a Ability's API response matches the expected
+    ...    JSON schema, ensuring all required fields and Abilities are correct.
+    ...    Fetches the Ability data and validates against the provided schema.
+    [Arguments]    ${ability_name}    ${schema}
+
+    ${json}=    Get Ability Json    ${ability_name}
+
+    Validate Json
+    ...    ${schema}
+    ...    ${json}
