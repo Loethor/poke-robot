@@ -25,7 +25,7 @@ Virus Type Does Not Exists
     ...    Given the PokeAPI is available
     ...    When we request Virus type
     ...    Then it does not exist
-    [Tags]    type    negative
+    [Tags]    type    negative    regression
 
     ${response}=    Get Type By Name    virus
     Type Should Not Exist    ${response}

@@ -46,7 +46,7 @@ Verify Agumon Does Not Exist
     ...    Given the PokeAPI is available
     ...    When we request digimon Agumon
     ...    Then the digimon does not exist
-    [Tags]    pokemon    negative
+    [Tags]    pokemon    negative    regression
 
     ${response}=    Get Pokemon By Name    agumon
 
@@ -57,7 +57,7 @@ Verify All Pokemon From Csv
     ...    Given the PokeAPI is available
     ...    When we request pokemons from the csv
     ...    Then all of them exist
-    [Tags]    pokemon    data-driven    regression
+    [Tags]    pokemon    regression
 
     @{rows}=    Read Csv File To Associative    ${CSV_FILE}
 
@@ -81,7 +81,7 @@ Verify Random Pokemon Not Found
     ...    Given the PokeAPI is available
     ...    When we request random name
     ...    Then the request is not found
-    [Tags]    pokemon    negative
+    [Tags]    pokemon    negative    regression
 
     ${random}=    Generate Random String    6
 

@@ -68,6 +68,6 @@ Validate Pokemon Ability Schema
     ...    Given the PokeAPI is available
     ...    When we request Ability data (e.g., Blaze)
     ...    Then the response structure should match the Abilty schema
-    [Tags]    schema    ability    smoke
+    [Tags]    schema    regression
 
     Ability Response Should Match Schema    blaze    ${POKEMON_ABILITY_SCHEMA}
