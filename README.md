@@ -19,14 +19,17 @@ It focuses on:
 - automated report publishing
 
 ## Run tests (quick start)
-
-`uv sync`
-`uv run robot tests/`
+```bash
+uv sync
+uv run robot tests/
+```
 
 Optional:
 
-`uv run robot -d reports tests `
-`uv run robot -d reports tests/pokemon`
+```bash
+uv run robot -d reports tests
+uv run robot -d reports tests/pokemon
+```
 
 ## Installation
 
